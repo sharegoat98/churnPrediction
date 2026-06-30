@@ -4,6 +4,7 @@
 
 The goal of application is to develop solutions that will identify players at risk of leaving live betting.
 
+---
 
 **EDA and Data Preprocessing**
 
