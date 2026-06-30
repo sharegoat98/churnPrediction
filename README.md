@@ -45,6 +45,16 @@ Conclusion based on the results of the trained ML models (Logistic Regression, R
 - In a real production environment, it is generally preferable not to rely on a fixed decision threshold. Instead, the classification threshold should be adjusted according to the current business objective, allowing the balance between precision and recall to be optimized for different use cases.
 ---
 
+**Potential improvements for a production-ready solution:**
+
+- Implement a Flask API through which each model can be invoked. The API would also support model training and retraining.
+- Additionally, unit tests and API tests should be added to ensure reliability and correctness.
+- Implement logging for every API request and the corresponding model output.
+- Deploy the entire application on an AWS SageMaker environment. This would allow centralized management of model training, retraining, and inference. It would also enable more advanced logging, performance monitoring, and model tracking, making it easier to scale the application and manage different model versions in production. Furthermore, it would allow seamless model version switching without any production downtime.
+- Conduct a more detailed comparison of models by tuning thresholds and hyperparameters to optimize performance for a specific business use case.
+- Implement a more robust model performance tracking system such as MLflow. This would make it clear which thresholds and model configurations are most suitable for different business scenarios.
+- Automate dataset updates and model retraining using Apache Airflow.
+
 **How to Run**
 
 1. Clone the repository.
@@ -74,7 +84,7 @@ I would use the Pydantic library to handle potential Python cold-start issues, i
 Model performance tracking (including hyperparameter tuning and threshold optimization) would be handled using MLflow.
 For regular, automated data collection and model retraining, I would use an Apache Airflow pipeline that gathers fresh data from designated sources and triggers model retraining based on that data.
 
-** 4. Utilizing Text Data from the Contact Center
+**4. Utilizing Text Data from the Contact Center
 In addition to the structured data from the CSV, the company also possesses the history of text correspondences that dissatisfied users had with our contact center. How would you leverage this text data to improve the existing Churn system? Conceptually describe how you see the application of AI / RAG systems in this scenario and what the technical steps for implementation would be.**
 
 I would use the text correspondences with users to build a knowledge base on top of the existing structured features. These texts would be incorporated into a RAG framework, where they would be used in the retrieval stage to provide additional context and validation of the results produced by the LLM.
